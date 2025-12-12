@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stylish Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(-45deg, #4b79a1, #283e51, #6a82fb, #b5b5fc);
+      background-size: 400% 400%;
+      animation: gradientBG 25s ease infinite;
+      color: #f0f0f0;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Background shapes */
+    .bg-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 1%, transparent 1%) repeat;
+      background-size: 60px 60px;
+      z-index: -1;
+      animation: moveShapes 80s linear infinite;
+    }
+
+    @keyframes moveShapes {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(-200px,-200px); }
+    }
+
+    header {
+      text-align: center;
+      padding: 80px 20px;
+      background-color: rgba(0,0,0,0.3);
+      border-bottom: 2px solid #fff;
+    }
+
+    header h1 {
+      font-size: 3em;
+      color: #fff;
+      text-shadow: 1px 1px #000;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.2em;
+      color: #ddd;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: rgba(0,0,0,0.35);
+      backdrop-filter: blur(3px);
+    }
+
+    nav a {
+      color: #fff;
+      padding: 15px 25px;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      transform: scale(1.15);
+      color: #ffffff;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 2.5em;
+      color: #ffffff;
+      text-shadow: 1px 1px #000;
+    }
+
+    .projects, .skills, .contact {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #6a82fb, #4b79a1);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+      text-align: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.6s ease-out;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.7);
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background-color: rgba(0,0,0,0.5);
+      color: #fff;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-shapes"></div>
+
+  <header>
+    <h1>Abdelrahman Abas</h1>
+    <p>Data analyst & Graphic designer</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Iam a third grade student of computer science who is passionate about data analysis and science and has some intersts in graphic design</p>
+  </section>
+
+  <section id="projects">
+    <h2>My Projects</h2>
+    <div class="projects">
+      <div class="card">hoodie design for local brand</div>
+      <div class="card">cleaned and analyzed data for barber shop</div>
+      <div class="card">poster design for E-learning platform</div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="card">Graphic design</div>
+      <div class="card">Data preprocessing</div>
+      <div class="card">Data analysis</div>
+      <div class="card">python</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact">
+      <div class="card">Email: Abdoanaabas01012@gmail.com</div>
+      <div class="card">Phone: 01012043234</div>
+      <div class="card">LinkedIn: Abdelrahman Abas </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2005 Abdelrahman. All rights reserved.
+  </footer>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => observer.observe(card));
+  </script>
+
+</body>
+</html>
